@@ -10,7 +10,7 @@ import {
 } from "./agents";
 
 // Import workflows
-import { aoVeilleWorkflow, feedbackWorkflow } from "./workflows";
+import { aoVeilleWorkflow, feedbackWorkflow, casBKeywordCorrectionWorkflow } from "./workflows";
 
 // Import feedback handlers
 import {
@@ -44,6 +44,10 @@ export const mastra = new Mastra({
   storage: new PostgresStore({
     id: 'mastra-pg-store',
     connectionString: process.env.SUPABASE_DIRECT_URL!,
+    // Supavisor session pooler hard-limits 15 concurrent clients per project.
+    // We have 2 PostgresStore instances + 1 PgVector → keep each pool small.
+    max: 4,
+    idleTimeoutMillis: 10_000,
   }),
   agents: {
     boampSemanticAnalyzer,
@@ -53,6 +57,7 @@ export const mastra = new Mastra({
   workflows: {
     aoVeilleWorkflow,
     feedbackWorkflow,
+    casBKeywordCorrectionWorkflow,
   },
   bundler: {
     externals: [
@@ -91,7 +96,10 @@ export const mastra = new Mastra({
       },
     ],
     cors: {
-      origin: ["*"],
+      origin: [
+        "https://balthazar-veille-app-kappa.vercel.app",
+        "http://localhost:3000",
+      ],
       allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       allowHeaders: ["Content-Type", "Authorization"],
     },
