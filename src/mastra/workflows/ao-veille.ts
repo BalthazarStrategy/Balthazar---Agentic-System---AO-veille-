@@ -1928,9 +1928,9 @@ const scoreOneAOStep = createStep({
     );
     
     // Priorisation
-    const priority: 'HIGH' | 'MEDIUM' | 'LOW' = 
+    const priority: 'HIGH' | 'MEDIUM' | 'LOW' =
       score >= 8 ? 'HIGH' :
-      score >= 6 ? 'MEDIUM' : 'LOW';
+      score >= 5.5 ? 'MEDIUM' : 'LOW';
 
     // Override: if the agent explicitly decided HAUTE or MOYENNE priorité,
     // don't downgrade to LOW based on numeric score alone.

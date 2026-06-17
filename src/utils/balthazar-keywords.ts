@@ -817,9 +817,11 @@ export function shouldSkipLLM(scoreResult: KeywordScoreResult): {
     return { skip: true, reason: 'score_faible', priority: 'LOW' };
   }
   
-  // Cas 4 : Score 30-40 avec LOW confidence → skip pour économiser
-  if (score >= 30 && score < 40 && confidence === 'LOW') {
-    return { skip: true, reason: 'confidence_faible', priority: 'LOW' };
+  // Cas 4 : Score 25-40 avec LOW confidence → skip uniquement sous 25
+  // Seuil abaissé de 40→25 : les AOs avec score 25+ ont un signal métier réel
+  // même avec confidence LOW (vocabulaire généraliste type "conseil", "stratégie")
+  if (score >= 25 && score < 40 && confidence === 'LOW') {
+    return { skip: false, priority: 'LOW' };
   }
   
   // Cas 5 : Score ≥30 → analyser avec LLM
