@@ -27,7 +27,7 @@ Le système est composé de **deux repos** :
 | `Balthazar---Agentic-System---AO-veille-` | Backend IA : pipeline veille, agents, feedback | Mastra + Inngest |
 | `balthazar-veille-app` | Interface utilisateur : dashboard AOs, chat IA | Next.js + Vercel AI SDK |
 
-Les deux partagent la même base **Supabase** (`appels_offres`). La Next.js app appelle Mastra Cloud via HTTP pour le chat et le feedback. **→ [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)**
+Les deux partagent la même base **Supabase** (`appels_offres`). La Next.js app appelle Mastra Platform via HTTP pour le chat et le feedback. **→ [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)**
 
 ### Composants Mastra
 
@@ -439,15 +439,16 @@ SUPABASE_URL=https://xxx.supabase.co
 SUPABASE_SERVICE_KEY=eyJ...
 SUPABASE_PUBLISHABLE_KEY=eyJ...
 
-# Resend (emails)
+# Resend (emails) — domaine balthazar.org vérifié
 RESEND_API_KEY=re_...
+EMAIL_FROM=veille@balthazar.org
 
 # Tests locaux : redirige les emails vers cette adresse au lieu des destinataires prod
 # RESEND_TO_OVERRIDE=you@example.com
 
 # Feedback (doit être identique dans balthazar-veille-app)
 FEEDBACK_SECRET=<clé 32 chars>
-MASTRA_URL=https://balthazar-tender-monitoring.server.mastra.cloud
+MASTRA_URL=https://balthazar-tender-monitoring-8083.server.mastra.cloud
 ```
 
 ### Initialiser la Base de Données
@@ -501,7 +502,7 @@ Le serveur Mastra démarre sur `http://localhost:4111` (port configuré dans `sr
 
 ### Déploiement et automatisation
 
-- **[INNGEST.md](./INNGEST.md)** — Planification quotidienne en production (Inngest + Mastra Cloud)
+- **[INNGEST.md](./INNGEST.md)** — Planification quotidienne en production (Inngest + Mastra Platform)
 - **[docs/TESTS_AVANT_COMMIT.md](./docs/TESTS_AVANT_COMMIT.md)** — Tests et checklist avant commit / modification du workflow
 - **[DEPLOIEMENT_MASTRA_CLOUD.md](./DEPLOIEMENT_MASTRA_CLOUD.md)** — Déploiement Mastra Cloud
 
@@ -554,7 +555,7 @@ console.log(`${result.high} HIGH, ${result.medium} MEDIUM`);
 
 ### Automatisation quotidienne (production)
 
-En production, la veille est planifiée par **Inngest** (cron sur Mastra Cloud) :
+En production, la veille est planifiée par **Inngest** (cron sur Mastra Platform) :
 
 - 🕐 **Horaire** : 6h00 UTC, **lundi–vendredi** (7h Paris hiver / 8h été)
 - 🔗 **Endpoint** : `https://<domaine-mastra-cloud>/api/inngest` (sync dans le dashboard Inngest)

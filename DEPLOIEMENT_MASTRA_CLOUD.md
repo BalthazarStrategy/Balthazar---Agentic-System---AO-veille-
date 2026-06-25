@@ -1,8 +1,10 @@
-# 🚀 Guide de Déploiement Mastra Cloud - Checklist Complète
+# 🚀 Guide de Déploiement Mastra Platform - Checklist Complète
+
+> **⚠️ Document historique (v0 / pré-mai 2026).** Ce guide a été rédigé lors de la migration initiale vers Mastra Cloud (désormais renommé **Mastra Platform**). Les versions de packages listées sont périmées (v0.24.x → v1.x depuis avril 2026). Pour les déploiements actuels, se référer à **[`docs/DEPLOYMENT_TROUBLESHOOTING.md`](./docs/DEPLOYMENT_TROUBLESHOOTING.md)** qui couvre la v1 et les pièges connus post-migration.
 
 **Documentation complète basée sur l'expérience de déploiement réelle**
 
-Ce guide documente tous les points critiques à vérifier avant et pendant le déploiement sur Mastra Cloud, basé sur les problèmes rencontrés et résolus.
+Ce guide documente tous les points critiques à vérifier avant et pendant le déploiement sur Mastra Platform (anciennement Mastra Cloud), basé sur les problèmes rencontrés et résolus.
 
 ---
 
@@ -185,7 +187,7 @@ Vérifier que toutes les variables nécessaires sont configurées dans Mastra Cl
 | `SUPABASE_URL` | ✅ Oui | URL Supabase |
 | `SUPABASE_SERVICE_KEY` | ✅ Oui | Clé service Supabase |
 | `RESEND_API_KEY` | ✅ Oui | Clé API Resend (emails) |
-| `EMAIL_FROM` | Optionnel | Adresse expéditrice des emails |
+| `EMAIL_FROM` | ✅ Oui | Adresse expéditrice des emails — `veille@balthazar.org` (domaine vérifié dans Resend) |
 | `INNGEST_SIGNING_KEY` | ✅ Oui (prod + Inngest) | Vérification des requêtes signées depuis Inngest Cloud |
 | `INNGEST_EVENT_KEY` | Selon config Inngest | Client / envoi d’événements (voir dashboard Inngest) |
 | `BALTHAZAR_CLIENT_ID` | ✅ Oui | ID client passé au workflow de veille (ex. `balthazar`) |
