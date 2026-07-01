@@ -44,6 +44,10 @@ Ne demande PAS de confirmation à l'utilisateur — c'est le superviseur qui gè
       : 'Aucune règle similaire détectée.';
 
     // Step 2 — Tuning agent: structured diagnosis
+    const correctionTypeConstraint = forcedCorrectionType
+      ? `\nTYPE DE CORRECTION IMPOSÉ : ${forcedCorrectionType}. Tu DOIS utiliser ce type exact — ne propose PAS rag_chunk. Génère proposal_fr et impact_fr adaptés à une règle de type ${forcedCorrectionType === 'keyword_red_flag' ? 'mot-clé excluant (red flag)' : 'mot-clé boostant'}.`
+      : `\nPour direction=include, utilise correction_type=keyword_boost.`;
+
     const diagnosisPrompt = `Contexte AO :
 ${ao_context}
 
@@ -57,8 +61,7 @@ Q2 (impact confirmé) : ${q2_valid_case}
 Q3 (reformulation confirmée) : ${q3_confirmed_rule}
 
 ${similarRulesContext}
-
-Propose une correction unique et ciblée. Pour direction=include, utilise correction_type=keyword_boost.`;
+${correctionTypeConstraint}`;
 
     const diagnosisResult = await aoFeedbackTuningAgent.generate(diagnosisPrompt, {
       structuredOutput: { schema: feedbackProposalSchema },
@@ -132,7 +135,7 @@ Propose une correction unique et ciblée. Pour direction=include, utilise correc
       simulationSummary = simulationLines.join(' ');
     } else {
       const correctlyExcluded = affected.filter(ao => ao.priority === 'LOW' || ao.priority === null);
-      const potentiallyWrong = affected.filter(ao => ao.priority === 'HIGH' || ao.priority === 'MEDIUM');
+      const potentiallyWrong = affected.filter(ao => (ao.priority === 'HIGH' || ao.priority === 'MEDIUM') && ao.source_id !== source_id);
       affectedHighMedium = potentiallyWrong.map(ao => ({ source_id: ao.source_id, title: ao.title, priority: ao.priority as string }));
       const simulationLines: string[] = [`${affected.length} AO(s) ouverts affectés sur les 30 derniers jours.`];
       if (correctlyExcluded.length > 0) simulationLines.push(`✅ ${correctlyExcluded.length} correctement exclus (déjà LOW).`);

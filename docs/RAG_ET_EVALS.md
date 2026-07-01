@@ -239,4 +239,4 @@ La directive `.foreach(processOneAOWorkflow, { concurrency: 2 })` limite à **2 
 DATABASE_URL=... npx tsx scripts/rag/index-balthazar.ts
 ```
 
-Pour une description du déploiement Mastra Cloud, voir **DEPLOIEMENT_MASTRA_CLOUD.md**.
+Pour une description du déploiement Mastra Platform, voir **DEPLOIEMENT_MASTRA_CLOUD.md** (document historique, se référer à `docs/DEPLOYMENT_TROUBLESHOOTING.md` pour la version à jour).

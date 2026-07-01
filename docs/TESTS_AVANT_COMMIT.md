@@ -45,11 +45,11 @@ Les migrations sont versionnées dans `supabase/migrations/`. Pour appliquer :
 
 ## 5. Test manuel du workflow (recommandé)
 
-**Option A — Inngest (prod)** : dashboard Inngest → **AO Veille Quotidienne** → **Invoke Function**, puis vérifier les logs Mastra Cloud.
+**Option A — Inngest (prod)** : dashboard Inngest → **AO Veille Quotidienne** → **Invoke Function**, puis vérifier les logs Mastra Platform.
 
 **Option B — Mastra Studio (local)** : `npm run dev` → workflow `aoVeilleWorkflow` avec `clientId`, `since` (date), etc.
 
-**Option C — API Mastra Cloud** : `POST /api/workflows/aoVeilleWorkflow/start-async` avec un JSON d'entrée (voir README / WORKFLOW_AO_VEILLE.md). Vérifier code HTTP 2xx et logs Mastra.
+**Option C — API Mastra Platform** : `POST /api/workflows/aoVeilleWorkflow/start-async` avec un JSON d'entrée (voir README / WORKFLOW_AO_VEILLE.md). Vérifier code HTTP 2xx et logs Mastra.
 
 ---
 

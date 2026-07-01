@@ -135,7 +135,7 @@ SUPABASE_SERVICE_KEY=    # Supabase write
 SUPABASE_PUBLISHABLE_KEY=
 RESEND_API_KEY=          # emails confirmation feedback
 FEEDBACK_SECRET=         # clé HMAC 32 chars (partagée avec Next.js)
-MASTRA_URL=              # https://balthazar-tender-monitoring.server.mastra.cloud
+MASTRA_URL=              # https://balthazar-tender-monitoring-8083.server.mastra.cloud
 ```
 
 ### Repo Next.js (`balthazar-veille-app`)
@@ -273,7 +273,7 @@ lib/
 
 | Composant | Plateforme | URL |
 |-----------|-----------|-----|
-| Backend Mastra | Mastra Platform | `https://balthazar-tender-monitoring.server.mastra.cloud` |
+| Backend Mastra | Mastra Platform | `https://balthazar-tender-monitoring-8083.server.mastra.cloud` |
 | Frontend Next.js | Vercel (ou local) | Variable |
 | Base de données | Supabase | Projet partagé |
 | Cron | Inngest | Dashboard Inngest → ao-veille-daily |

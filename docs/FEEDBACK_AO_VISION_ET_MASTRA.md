@@ -147,7 +147,7 @@ Séquence recommandée (alignée sur la doc Mastra) :
 6. **Si `approved === false`** : **`bail({ reason: '...' })`** et marquer `ao_feedback.rejected`.
 7. **Si approved** : step « apply » puis « recheck » (optionnel selon case à cocher « relancer l’analyse sur cet AO »).
 
-Les **snapshots** de workflow (stockage Mastra) assurent la reprise après redémarrage — pertinent pour Mastra Cloud. Voir [Suspend & Resume](https://mastra.ai/docs/workflows/suspend-and-resume).
+Les **snapshots** de workflow (stockage Mastra) assurent la reprise après redémarrage — pertinent pour Mastra Platform. Voir [Suspend & Resume](https://mastra.ai/docs/workflows/suspend-and-resume).
 
 ---
 
@@ -181,7 +181,7 @@ Dans Cursor, le serveur MCP est configuré pour lancer :
 - `nested workflow`, `branch`, `foreach` (si re-scoring par lot)
 - `Agent`, `tools`, structured output / `z.object`
 - RAG : `MDocument`, chunking, `PgVector` / vector store utilisé par Balthazar
-- Déploiement Mastra Cloud + persistance des snapshots si applicable
+- Déploiement Mastra Platform + persistance des snapshots si applicable
 
 ---
 

@@ -10,3 +10,4 @@ export * from './balthazar-keywords';
 export * from './email-templates';
 export * from './email-sender';
 export * from './rectificatif-utils';
+export * from './rag-indexer';

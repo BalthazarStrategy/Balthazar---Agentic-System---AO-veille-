@@ -11,7 +11,7 @@ import { createWorkflow, createStep } from '@mastra/core/workflows';
 import { z } from 'zod';
 import { createClient } from '@supabase/supabase-js';
 import { aoFeedbackTuningAgent, feedbackProposalSchema } from '../agents/ao-feedback-tuning-agent';
-import { insertAndIndexChunk } from '../../utils/rag-indexer';
+import { insertAndIndexChunk } from '../../utils';
 import { signFeedbackToken } from '../../utils/feedback-token';
 import { sendEmail } from '../../utils/email-sender';
 

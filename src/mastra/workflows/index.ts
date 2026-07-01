@@ -6,4 +6,5 @@
 
 export { aoVeilleWorkflow } from "./ao-veille";
 export { feedbackWorkflow } from "./feedback-workflow";
+export { casBKeywordCorrectionWorkflow } from "./cas-b-keyword-correction";
 

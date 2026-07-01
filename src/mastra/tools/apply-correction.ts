@@ -1,7 +1,7 @@
 import { createTool } from '@mastra/core/tools';
 import { z } from 'zod';
 import { supabase } from './_shared/supabase';
-import { insertAndIndexChunk } from '../../utils/rag-indexer';
+import { insertAndIndexChunk } from '../../utils';
 
 export const applyCorrection = createTool({
   id: 'applyCorrection',

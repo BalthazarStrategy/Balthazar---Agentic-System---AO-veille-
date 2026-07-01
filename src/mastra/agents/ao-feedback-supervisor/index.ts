@@ -26,6 +26,9 @@ const memory = new Memory({
   storage: new PostgresStore({
     id: 'mastra-memory-pg-store',
     connectionString: process.env.SUPABASE_DIRECT_URL!,
+    // Supavisor session pooler limit 15 concurrent. Cf piège #9 dans DEPLOYMENT_TROUBLESHOOTING.md
+    max: 4,
+    idleTimeoutMillis: 10_000,
   }),
   options: {
     lastMessages: 15,
